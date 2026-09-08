@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdarg.h>
 
 /**
  * _printf - print formatted strings
@@ -10,5 +9,13 @@
  */
 int _printf(char *s)
 {
-	return (0);
+	int count = 0;
+
+	while (*s)
+	{
+		_putchar(*s);
+		count++;
+		s++;
+	}
+	return (count);
 }

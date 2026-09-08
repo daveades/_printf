@@ -3,10 +3,11 @@
 /**
  * main - Entry point
  *
- * description: print 'A' to STDOUT
+ * description: Test printf function
  * Return: 1
  */
 int main(void)
 {
-	_putchar('A');
+	_printf("My name is David, I am just a man\n");
+	return (1);
 }
