@@ -11,7 +11,7 @@ int main(void)
 {
 	int count;
 
-	count = _printf("Progress: 100%%: ");
+	count = _printf("Progress: 100%%, Character = %c: ", 'd');
 	printf("%d\n", count);
 	return (count);
 }

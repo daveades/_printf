@@ -16,7 +16,7 @@ int _printf(const char *s, ...)
 
 	while (*s)
 	{
-		if (s == '%')
+		if (*s == '%')
 		{
 			s++;
 			count += handle_f_specifier(*s, args);
