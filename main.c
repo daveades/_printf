@@ -11,7 +11,9 @@ int main(void)
 {
 	int count;
 
-	count = _printf("Progress: 100%%, Character = %c: ", 'd');
-	printf("%d\n", count);
+	count = _printf("Progress: 100%%,\n"
+		"Character: = %c,\nString: %s,\n"
+		, 'd', "Hello, World!");
+	printf("Total characters printed: %d\n", count);
 	return (count);
 }

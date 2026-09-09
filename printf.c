@@ -15,6 +15,9 @@ int _printf(const char *s, ...)
 
 	va_start(args, s);
 
+	if (s == NULL)
+		return (-1);
+
 	while (*s)
 	{
 		if (*s == '%')
