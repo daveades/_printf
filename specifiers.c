@@ -37,7 +37,8 @@ int print_string(char *s)
 	int count = 0;
 
 	if (s == NULL)
-		return (0); /* Come back to this, not sure what to return: -1 or 0 */
+		s =  "(null)";
+
 	while (*s)
 	{
 		count += _putchar(*s);
@@ -45,3 +46,20 @@ int print_string(char *s)
 	}
 	return (count);
 }
+
+int print_int(int n)
+{
+	/* say n = 1045 */
+	/* (1045 / 1000) % 10 = 1 */
+	/* (1045 / 100) % 10 = 0 */
+	/* (1045 / 10) % 10 = 4 */
+	/* (1045 / 1) % 10 = 5 */
+
+	/* (num / divisor) % 10 = digit */
+
+	/* How to get divisor ?*/
+	/* Start with divisor = 1 and multiply by 10 until (num / divisor) < 10 */
+
+	return (0);
+}
+
