@@ -6,8 +6,8 @@
  * @c: char to be printed
  * description: uses write syscall to print char to stdout
  */
-void _putchar(char c)
+int _putchar(char c)
 {
-	write(1, &c, 1);
+	return (write(1, &c, 1));
 }
 

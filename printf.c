@@ -13,8 +13,14 @@ int _printf(char *s)
 
 	while (*s)
 	{
-		_putchar(*s);
-		count++;
+		if (*s == '%' && *(s + 1) == '%')
+		{
+			count += _putchar('%');
+			s += 2;
+
+			continue;
+		}
+		count += _putchar(*s);
 		s++;
 	}
 	return (count);

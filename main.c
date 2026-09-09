@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * main - Entry point
@@ -8,6 +9,9 @@
  */
 int main(void)
 {
-	_printf("My name is David, I am just a man\n");
-	return (1);
+	int count;
+
+	count = _printf("Progress: 100%%: ");
+	printf("%d\n", count);
+	return (count);
 }
