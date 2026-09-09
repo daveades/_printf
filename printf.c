@@ -9,9 +9,10 @@
  */
 int _printf(const char *s, ...)
 {
+	va_list args;
+
 	int count = 0;
 
-	va_list args;
 	va_start(args, s);
 
 	while (*s)
