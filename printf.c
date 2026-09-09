@@ -7,20 +7,22 @@
  * description: My implementation of the printf function in C
  * Return: number of chars printed.
  */
-int _printf(char *s)
+int _printf(const char *s, ...)
 {
 	int count = 0;
 
+	va_list args;
+	va_start(args, s);
+
 	while (*s)
 	{
-		if (*s == '%' && *(s + 1) == '%')
+		if (s == '%')
 		{
-			count += _putchar('%');
-			s += 2;
-
-			continue;
+			s++;
+			count += handle_f_specifier(*s, args);
 		}
-		count += _putchar(*s);
+		else
+			count += _putchar(*s);
 		s++;
 	}
 	return (count);
