@@ -63,10 +63,15 @@ int print_int(int n)
 	/* if n < 0 */
 	/* print '-' and multiply n by -1 */
 
-
 	int divisor = 1;
 	int digit;
 	int count = 0;
+
+	if (n < 0)
+	{
+		count += _putchar('-');
+		n *= -1;
+	}
 
 	while (n / divisor >= 10)
 		divisor *= 10;
