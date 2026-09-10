@@ -59,6 +59,11 @@ int print_string(char *s)
  */
 int print_int(int n)
 {
+	/* Handling negative numbers */
+	/* if n < 0 */
+	/* print '-' and multiply n by -1 */
+
+
 	int divisor = 1;
 	int digit;
 	int count = 0;
