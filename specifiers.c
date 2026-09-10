@@ -60,10 +60,14 @@ int print_string(char *s)
  */
 int print_int(int n)
 {
+
+	/* integer oveflow edge case*/
+	long num = n;
+
 	return (
-		n < 0
-		? _putchar('-') + print_number(-n)
-		: print_number(n)
+		num < 0
+		? _putchar('-') + print_number(-num)
+		: print_number(num)
 	);
 }
 
@@ -75,7 +79,7 @@ int print_int(int n)
  * 
  * Return: number of chars printed.
  */
-int print_number(int n)
+int print_number(unsigned long n)
 {
 	int count = 0;
 	int divisor = 1;
