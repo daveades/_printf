@@ -29,5 +29,6 @@ int _printf(const char *s, ...)
 			count += _putchar(*s);
 		s++;
 	}
+	va_end(args);
 	return (count);
 }

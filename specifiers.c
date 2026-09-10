@@ -52,27 +52,34 @@ int print_string(char *s)
 
 /**
  * print_int - print an integer
- *
+ * 
  * @n: integer to print
- * description: prints an integer to stdout using _putchar
- *
+ * description: prints an integer to stdout
+ * 
  * Return: number of chars printed.
  */
 int print_int(int n)
 {
-	/* Handling negative numbers */
-	/* if n < 0 */
-	/* print '-' and multiply n by -1 */
+	return (
+		n < 0
+		? _putchar('-') + print_number(-n)
+		: print_number(n)
+	);
+}
 
+/**
+ * print_number - print a number
+ *
+ * @n: number to print
+ * description: prints a number to stdout
+ * 
+ * Return: number of chars printed.
+ */
+int print_number(int n)
+{
+	int count = 0;
 	int divisor = 1;
 	int digit;
-	int count = 0;
-
-	if (n < 0)
-	{
-		count += _putchar('-');
-		n *= -1;
-	}
 
 	while (n / divisor >= 10)
 		divisor *= 10;

@@ -9,13 +9,29 @@
  */
 int main(void)
 {
-	int count;
+	int count1, count2;
 
-	count = _printf("Progress: 100%%,\n"
-		"Character: = %c,\nString: %s,\n"
+	count1 = _printf(
+		"Progress: 100%%,\n"
+		"Character: = %c,\n"
+		"String: %s,\n"
 		"Integer: %d,\n"
-		"Negative int: %i,\n"
-		, 'd', "Hello, World!", 2987, -2987);
-	printf("Total characters printed: %d\n", count);
-	return (count);
+		"Negative int: %i,\n\n"
+		, 'd', "Hello, World!", 2987, -2987
+	);
+	printf("Total characters printed (_printf): %d\n\n", count1);
+
+	count2 = printf(
+		"Progress: 100%%,\n"
+		"Character: = %c,\n"
+		"String: %s,\n"
+		"Integer: %d,\n"
+		"Negative int: %i,\n\n"
+		, 'd', "Hello, World!", 2987, -2987
+	);
+	printf("Total characters printed (printf): %d\n", count2);
+
+
+	
+	return (0);
 }
