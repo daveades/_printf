@@ -20,6 +20,7 @@ int handle_f_specifier(char specifier, va_list args)
 		case 's':
 			return (print_string(va_arg(args, char *)));
 		case 'i':
+		case 'd':
 			return (print_int(va_arg(args, int)));
 		default:
 			return (0);

@@ -13,7 +13,7 @@ int main(void)
 
 	count = _printf("Progress: 100%%,\n"
 		"Character: = %c,\nString: %s,\n"
-		"Integer: %i,\n"
+		"Integer: %d,\n"
 		"Negative int: %i,\n"
 		, 'd', "Hello, World!", 2987, -2987);
 	printf("Total characters printed: %d\n", count);
