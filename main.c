@@ -13,7 +13,8 @@ int main(void)
 
 	count = _printf("Progress: 100%%,\n"
 		"Character: = %c,\nString: %s,\n"
-		, 'd', "Hello, World!");
+		"Integer: %i\n"
+		, 'd', "Hello, World!", 2987);
 	printf("Total characters printed: %d\n", count);
 	return (count);
 }

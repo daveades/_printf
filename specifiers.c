@@ -19,6 +19,8 @@ int handle_f_specifier(char specifier, va_list args)
 			return (_putchar(va_arg(args, int)));
 		case 's':
 			return (print_string(va_arg(args, char *)));
+		case 'i':
+			return (print_int(va_arg(args, int)));
 		default:
 			return (0);
 	}
@@ -47,19 +49,28 @@ int print_string(char *s)
 	return (count);
 }
 
+/**
+ * print_int - print an integer
+ *
+ * @n: integer to print
+ * description: prints an integer to stdout using _putchar
+ *
+ * Return: number of chars printed.
+ */
 int print_int(int n)
 {
-	/* say n = 1045 */
-	/* (1045 / 1000) % 10 = 1 */
-	/* (1045 / 100) % 10 = 0 */
-	/* (1045 / 10) % 10 = 4 */
-	/* (1045 / 1) % 10 = 5 */
+	int divisor = 1;
+	int digit;
+	int count = 0;
 
-	/* (num / divisor) % 10 = digit */
+	while (n / divisor >= 10)
+		divisor *= 10;
 
-	/* How to get divisor ?*/
-	/* Start with divisor = 1 and multiply by 10 until (num / divisor) < 10 */
+	for (; divisor >= 1; divisor /= 10)
+	{
+		digit = (n / divisor) % 10;
+		count += _putchar(digit + '0');
+	}
 
-	return (0);
+	return (count);
 }
-
