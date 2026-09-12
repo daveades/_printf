@@ -22,6 +22,14 @@ int handle_f_specifier(char specifier, va_list args)
 		case 'i':
 		case 'd':
 			return (print_int(va_arg(args, int)));
+		case 'u':
+			return (print_number_base(va_arg(args, unsigned int), 10, "0123456789"));
+		case 'o':
+			return (print_number_base(va_arg(args, unsigned int), 8, "01234567"));
+		case 'x':
+			return (print_number_base(va_arg(args, unsigned int), 16, "0123456789abcdef"));
+		case 'X':
+			return (print_number_base(va_arg(args, unsigned int), 16, "0123456789ABCDEF"));
 		default:
 			return (0);
 	}
@@ -52,10 +60,10 @@ int print_string(char *s)
 
 /**
  * print_int - print an integer
- * 
+ *
  * @n: integer to print
  * description: prints an integer to stdout
- * 
+ *
  * Return: number of chars printed.
  */
 int print_int(int n)
@@ -66,32 +74,34 @@ int print_int(int n)
 
 	return (
 		num < 0
-		? _putchar('-') + print_number(-num)
-		: print_number(num)
+		? _putchar('-') + print_number_base(-num, 10, "0123456789")
+		: print_number_base(num, 10, "0123456789")
 	);
 }
 
 /**
- * print_number - print a number
+ * print_number_base - Prints a number in a specified base
  *
- * @n: number to print
- * description: prints a number to stdout
- * 
- * Return: number of chars printed.
+ * @n: number to be printed
+ * @base: base to print n
+ * @digits: valid base digits
+ *
+ * description: Prints a number in either base 10, 16 or 8
+ * Return: num of printed digits.
  */
-int print_number(unsigned long n)
+int print_number_base(unsigned long n, unsigned int base, const char *digits)
 {
 	int count = 0;
-	int divisor = 1;
-	int digit;
+	unsigned long divisor = 1;
+	int digit_idx;
 
-	while (n / divisor >= 10)
-		divisor *= 10;
+	while (n / divisor >= base)
+		divisor *= base;
 
-	for (; divisor >= 1; divisor /= 10)
+	for (; divisor >= 1; divisor /= base)
 	{
-		digit = (n / divisor) % 10;
-		count += _putchar(digit + '0');
+		digit_idx = (n / divisor) % base;
+		count += _putchar(digits[digit_idx]);
 	}
 
 	return (count);
