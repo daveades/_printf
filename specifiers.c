@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdint.h>
 
 /**
  * handle_f_specifier - handle format specifiers
@@ -30,6 +31,8 @@ int handle_f_specifier(char specifier, va_list args)
 			return (print_number_base(va_arg(args, unsigned int), 16, "0123456789abcdef"));
 		case 'X':
 			return (print_number_base(va_arg(args, unsigned int), 16, "0123456789ABCDEF"));
+		case 'p':
+			return (print_pointer(va_arg(args, void *)));
 		default:
 			return (0);
 	}
@@ -105,4 +108,16 @@ int print_number_base(unsigned long n, unsigned int base, const char *digits)
 	}
 
 	return (count);
+}
+
+int print_pointer(void *ptr)
+{
+	int count = 0;
+
+	uintptr_t ptr_value = (uintptr_t)ptr;
+
+	count += _putchar('0');
+	count += _putchar('x');
+
+	return (count + print_number_base(ptr_value, 16, "0123456789abcdef"));
 }
