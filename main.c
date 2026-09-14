@@ -13,6 +13,7 @@ int main(void)
 	int count1, count2;
 	int value = 56;
 	int *ptr = &value;
+	int x = 10;
 
 
 	count1 = _printf(
@@ -40,7 +41,7 @@ int main(void)
 		"Hexadecimal: %x,\n"
 		"Upper Hexadecimal: %X\n"
 		"pointer: %p\n\n"
-		, 'd', "Hello, World!", 2987, -2987, 39087, 23 , 19, 19, ptr
+		, 'd', "Hello, World!", 2987, -2987, 39087, 23 , 19, 19, (void *)ptr
 	);
 
 	printf("Counts match?: %s\n", (count1 == count2) ? "Yes" : "No");
@@ -66,7 +67,7 @@ int main(void)
 	count1 += _printf("Octal_UINT_MAX: %o\n", UINT_MAX);
 	count1 += _printf("Octal_Zero: %o\n", 0);
 
-	int x = 10;
+	
 	count1 += _printf("%p\n", (void *)&x);
 	count1 += _printf("NULL pointer: %p\n", NULL);
 
@@ -76,7 +77,7 @@ int main(void)
 	count2 += printf("UINT_MAX: %u\n", UINT_MAX);
 	count2 += printf("Zero_uint: %u\n", 0);
 
-	count2 += printf("NULL string: %s\n", NULL);
+	count2 += printf("NULL string: %s\n", "(null)");
 	count2 += printf("Empty string: %s\n", "");
 
 	count2 += printf("Hex_UINT_MAX: %x\n", UINT_MAX);
@@ -92,4 +93,6 @@ int main(void)
 
 	printf("Counts match?: %s\n", (count1 == count2) ? "Yes" : "No");
 	printf("Count1: %d, Count2: %d\n", count1, count2);
+
+	return (0);
 }
