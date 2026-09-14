@@ -10,31 +10,43 @@
  *
  * Return: number of chars printed.
  */
-int handle_f_specifier(char specifier, va_list args)
+int handle_f_specifier(char specifier, va_list *args)
 {
 	switch (specifier)
 	{
 		case '%':
 			return (_putchar('%'));
 		case 'c':
-			return (_putchar(va_arg(args, int)));
+			return (_putchar(va_arg(*args, int)));
 		case 's':
-			return (print_string(va_arg(args, char *)));
+			return (print_string(va_arg(*args, char *)));
 		case 'i':
 		case 'd':
-			return (print_int(va_arg(args, int)));
+			return (print_int(va_arg(*args, int)));
+		case 'b':
+			return (print_number_base(va_arg(*args, unsigned int), 2, "01"));
 		case 'u':
-			return (print_number_base(va_arg(args, unsigned int), 10, "0123456789"));
+			return (print_number_base(va_arg(*args, unsigned int), 10, "0123456789"));
 		case 'o':
-			return (print_number_base(va_arg(args, unsigned int), 8, "01234567"));
+			return (print_number_base(va_arg(*args, unsigned int), 8, "01234567"));
 		case 'x':
-			return (print_number_base(va_arg(args, unsigned int), 16, "0123456789abcdef"));
+			return (print_number_base(
+				va_arg(*args, unsigned int), 16, "0123456789abcdef")
+			);
 		case 'X':
-			return (print_number_base(va_arg(args, unsigned int), 16, "0123456789ABCDEF"));
+			return (print_number_base(
+				va_arg(*args, unsigned int), 16, "0123456789ABCDEF")
+			);
 		case 'p':
-			return (print_pointer(va_arg(args, void *)));
+			return (print_pointer(va_arg(*args, void *)));
 		default:
-			return (0);
+			{
+				int count = 0;
+
+				count += _putchar('%');
+				count += _putchar(specifier);
+				return (count);
+			}
 	}
 }
 
@@ -74,12 +86,15 @@ int print_int(int n)
 
 	/* integer oveflow edge case*/
 	long num = n;
+	int count = 0;
 
-	return (
-		num < 0
-		? _putchar('-') + print_number_base(-num, 10, "0123456789")
-		: print_number_base(num, 10, "0123456789")
-	);
+	if (num < 0)
+	{
+		count += _putchar('-');
+		num = -num;
+	}
+	count += print_number_base(num, 10, "0123456789");
+	return (count);
 }
 
 /**
@@ -110,11 +125,30 @@ int print_number_base(unsigned long n, unsigned int base, const char *digits)
 	return (count);
 }
 
+/**
+ * print_pointer - Prints a pointer address in hexadecimal format
+ *
+ * @ptr: pointer to be printed
+ *
+ * description: Prints a pointer address in hexadecimal format
+ * with "0x" prefix. If the pointer is NULL, it prints "(nil)".
+ *
+ * Return: number of chars printed.
+ */
 int print_pointer(void *ptr)
 {
+	int i;
 	int count = 0;
 
 	uintptr_t ptr_value = (uintptr_t)ptr;
+
+	if (ptr == NULL)
+	{
+		for (i = 0; i < 5; i++)
+			count += _putchar("(nil)"[i]);
+
+		return (count);
+	}
 
 	count += _putchar('0');
 	count += _putchar('x');

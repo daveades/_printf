@@ -13,17 +13,18 @@ int _printf(const char *s, ...)
 
 	int count = 0;
 
-	va_start(args, s);
-
+	
 	if (s == NULL)
 		return (-1);
+	
+	va_start(args, s);
 
 	while (*s)
 	{
-		if (*s == '%')
+		if (*s == '%' && *(s + 1) != '\0')
 		{
 			s++;
-			count += handle_f_specifier(*s, args);
+			count += handle_f_specifier(*s, &args);
 		}
 		else
 			count += _putchar(*s);
